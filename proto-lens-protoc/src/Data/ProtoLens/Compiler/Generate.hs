@@ -382,7 +382,7 @@ generateEnumExports syntaxType e = [exportAll n, exportWith n aliases] ++ proto3
     aliases = [enumValueName v | v <- enumValues e, needsManualExport v]
     needsManualExport v = isJust (enumAliasOf v)
     proto3NewType = if syntaxType == Proto3
-      then [exportVar . unQual $ enumUnrecognizedValueName e]
+      then [exportAll . unQual $ enumUnrecognizedValueName e]
       else []
 
 generateServiceExports :: ServiceInfo -> ExportSpec
